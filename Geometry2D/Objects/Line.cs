@@ -33,6 +33,9 @@ namespace Geometry2D.Objects
         public double A { get => _a; }
         public double B { get => _b; }
         public double C { get => _c; }
+        public double NormalA { get => -Math.Sign(_c) * _a / NormalVector().Norm; }
+        public double NormalB { get => -Math.Sign(_c) * _b / NormalVector().Norm; }
+        public double NormalC { get => -Math.Sign(_c) * _c / NormalVector().Norm; }
         public static bool IfParallel(Line line1, Line line2) =>
             Math.Abs(line1._a*line2._b-line1._b*line2._a) < Constants.EPS;
         public Vector NormalVector() =>
@@ -42,5 +45,8 @@ namespace Geometry2D.Objects
         public double Value(double x, double y) =>
             _a * x + _b * y + _c;
         public double Value(Point point) => Value(point.X, point.Y);
+        public double NormalValue(double x, double y) =>
+            NormalA * x + NormalB * y + NormalC;
+        public double NormalValue(Point point) => Value(point.X, point.Y);
     }
 }
