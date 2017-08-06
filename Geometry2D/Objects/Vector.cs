@@ -15,6 +15,11 @@ namespace Geometry2D.Objects
             _x = x;
             _y = y;
         }
+        public Vector(Point start, Point end)
+        {
+            _x = end.X - start.X;
+            _y = end.Y - start.Y;
+        }
         public Vector(Point end)
         {
             _x = end.X;
@@ -52,10 +57,7 @@ namespace Geometry2D.Objects
         public double X { get => _x; }
         public double Y { get => _y; }
         public bool IfZero() => Norm <= Constants.EPS;
-        public static bool IfOrthogonal(Vector vector1, Vector vector2) =>
-            Math.Abs(vector1 * vector2) <= Constants.EPS;
-        public static bool IfColinear(Vector vector1, Vector vector2) =>
-            Math.Abs(ColinearityProduct(vector1, vector2)) <= Constants.EPS;
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
