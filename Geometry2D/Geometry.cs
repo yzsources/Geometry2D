@@ -139,13 +139,10 @@ namespace Geometry2D
                 throw new ArgumentException("Point does not lie on circle");
             if (circle.Radius <= Constants.EPS)
                 throw new ArgumentException("Circle is too small");
-            var cosOfThisAngle = (point.X - circle.Center.X) / circle.Radius;
-            cosOfThisAngle = cosOfThisAngle > 1 ? 1 :
-                cosOfThisAngle < -1 ? -1 : cosOfThisAngle;
-            var sinOfThisAngle = (point.Y - circle.Center.Y) / circle.Radius;
-            sinOfThisAngle = sinOfThisAngle > 1 ? 1 :
-                sinOfThisAngle < -1 ? -1 : sinOfThisAngle;
-            return Constants.Sign(sinOfThisAngle) * Math.Acos(cosOfThisAngle);
+            return Constants.AngleByCosSin(
+                (point.X - circle.Center.X) / circle.Radius,
+                (point.Y - circle.Center.Y) / circle.Radius
+                );
         }
         public static double AngleTwoPointsOnCircle(Point point1, Point point2, Circle circle) =>
             PointAngleOnCircle(point2, circle) - PointAngleOnCircle(point1, circle);
