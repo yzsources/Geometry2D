@@ -67,7 +67,7 @@ namespace Geometry2D.Objects
 
         #region Static functions
         public static bool IfParallel(Line line1, Line line2) =>
-            Math.Abs(line1._a * line2._b - line1._b * line2._a) < Constants.EPS;
+            Math.Abs(Vector.Determinant(line1.DirectingVector(), line2.DirectingVector())) < Constants.EPS;
         #endregion
 
 
