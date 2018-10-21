@@ -35,7 +35,7 @@ namespace Geometry2D
         #region Intersections
         public static Point IntersectionTwoLines(Line line1, Line line2)
         {
-            if (Line.IfParallel(line1, line2))
+            if (IfParallel(line1, line2))
                 throw new ArgumentException("Lines are paralel");
             return new Point(
                 (line2.C * line1.B - line1.C * line2.B) / (line1.A * line2.B - line1.B * line2.A),
