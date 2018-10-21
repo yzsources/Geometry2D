@@ -63,8 +63,53 @@ namespace Geometry2D.Objects.Algebraic
         };
         #endregion
 
+        #region Operations
+        public static Matrix operator +(Matrix matrix1, Matrix matrix2) =>
+            new Matrix(
+        matrix1[0, 0] + matrix2[0, 0],
+        matrix1[0, 1] + matrix2[0, 1],
+        matrix1[1, 0] + matrix2[1, 0],
+        matrix1[1, 1] + matrix2[1, 1]
+        );
 
+        public static Matrix operator -(Matrix matrix1, Matrix matrix2) =>
+            new Matrix(
+                matrix1[0, 0] - matrix2[0, 0],
+                matrix1[0, 1] - matrix2[0, 1],
+                matrix1[1, 0] - matrix2[1, 0],
+                matrix1[1, 1] - matrix2[1, 1]
+                );
 
+        public static Matrix operator -(Matrix matrix) =>
+            new Matrix(
+                -matrix[0, 0],
+                -matrix[0, 1],
+                -matrix[1, 0],
+                -matrix[1, 1]
+                );
+
+        public static Matrix operator *(double scalar, Matrix matrix) =>
+            new Matrix(
+                scalar * matrix[0, 0],
+                scalar * matrix[0, 1],
+                scalar * matrix[1, 0],
+                scalar * matrix[1, 1]
+                );
+
+        public static Vector operator *(Matrix matrix, Vector vector) =>
+            new Vector(
+                matrix.Lines[0] * vector,
+                matrix.Lines[1] * vector
+                );
+
+        public static Matrix operator *(Matrix matrix1, Matrix matrix2) =>
+            new Matrix(
+                matrix1.Lines[0] * matrix2.Columns[0],
+                matrix1.Lines[0] * matrix2.Columns[1],
+                matrix1.Lines[1] * matrix2.Columns[0],
+                matrix1.Lines[1] * matrix2.Columns[1]
+                );
+        #endregion
 
     }
 }
