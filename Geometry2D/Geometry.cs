@@ -12,21 +12,21 @@ namespace Geometry2D
         public static double DestinationPointLine(Point point, Line line) => Math.Abs(line.NormalValue(point));
         public static double DestinationTwoParallelLines(Line line1, Line line2)
         {
-            if (!IfColinear(line1.NormalVector(), line2.NormalVector()))
+            if (!Colinear(line1.NormalVector(), line2.NormalVector()))
                 throw new ArgumentException("Lines are not parallel");
             return Math.Abs(line1.NormalValue(0,0)-line2.NormalValue(0,0));
         }
         #endregion
 
         #region CheckingMethods
-        public static bool IfOrthogonal(Vector vector1, Vector vector2) =>
+        public static bool Orthogonal(Vector vector1, Vector vector2) =>
             Math.Abs(vector1 * vector2) <= Constants.EPS;
-        public static bool IfColinear(Vector vector1, Vector vector2) =>
+        public static bool Colinear(Vector vector1, Vector vector2) =>
             Math.Abs(Vector.Determinant(vector1, vector2)) <= Constants.EPS;
-        public static bool IfPointInLine(Point point, Line line) =>
+        public static bool PointOnLine(Point point, Line line) =>
             Math.Abs(line.Value(point)) < Constants.EPS;
-        public static bool IfColinear(Point point1, Point point2, Point point3) =>
-             IfColinear(new Vector(point1, point2), new Vector(point2, point3));
+        public static bool Colinear(Point point1, Point point2, Point point3) =>
+             Colinear(new Vector(point1, point2), new Vector(point2, point3));
 
         public static bool IfParallel(Line line1, Line line2) => 
             Math.Abs(Vector.Determinant(line1.DirectingVector(), line2.DirectingVector())) < Constants.EPS;
@@ -86,7 +86,7 @@ namespace Geometry2D
         }
         public static Line ParallelLine(Line line, Point point, bool returnCopy = false)
         {
-            if (IfPointInLine(point, line) && !returnCopy)
+            if (PointOnLine(point, line) && !returnCopy)
                 throw new ArgumentException("Point lies on line");
             return new Line(line.A, line.B, -line.A * point.X - line.B * point.Y);
         }
@@ -113,7 +113,7 @@ namespace Geometry2D
         #region WorkingWithCircles
         public static Circle CircleByThreePoints(Point point1, Point point2, Point point3)
         {
-            if (IfColinear(point1, point2, point3))
+            if (Colinear(point1, point2, point3))
                 throw new ArgumentException("Points are colinear");
             var center = IntersectionTwoLines(PerpendicularBisector(point1, point2), PerpendicularBisector(point2, point3));
             var radius = DestinationTwoPoints(point1, center);
@@ -139,7 +139,7 @@ namespace Geometry2D
         #region ProjectionMethods
         public static Point ProjectPointToLine(Line line, Point point, bool returnCopy = false)
         {
-            if (IfPointInLine(point, line) && !returnCopy)
+            if (PointOnLine(point, line) && !returnCopy)
                 throw new ArgumentException("Point lies on line");
             return IntersectionTwoLines(line, PerpendicularLineToLine(line, point));
         }
