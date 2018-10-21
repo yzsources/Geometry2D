@@ -9,6 +9,12 @@ namespace Geometry2D
         #region Destinations
         public static double DestinationTwoPoints(Point point1, Point point2) =>
             Point.Destination(point1, point2);
+        public static double DestinationTwoPointsOnCircle(Point point1, Point point2, Circle circle)
+        {
+            if (circle.Radius <= Constants.EPS)
+                return 0;
+            return Math.Abs(AngleTwoPointsOnCircle(point1, point2, circle)) * circle.Radius;
+        }
         public static double DestinationPointLine(Point point, Line line) => Math.Abs(line.NormalValue(point));
         public static double DestinationTwoParallelLines(Line line1, Line line2)
         {
@@ -16,6 +22,7 @@ namespace Geometry2D
                 throw new ArgumentException("Lines are not parallel");
             return Math.Abs(line1.NormalValue(0,0)-line2.NormalValue(0,0));
         }
+        
         #endregion
 
         #region CheckingMethods
@@ -25,6 +32,8 @@ namespace Geometry2D
             Math.Abs(Vector.Determinant(vector1, vector2)) <= Constants.EPS;
         public static bool PointOnLine(Point point, Line line) =>
             Math.Abs(line.Value(point)) < Constants.EPS;
+        public static bool PointOnCircle(Point point, Circle circle) =>
+            DestinationTwoPoints(point, circle.Center) <= Constants.EPS;
         public static bool Colinear(Point point1, Point point2, Point point3) =>
              Colinear(new Vector(point1, point2), new Vector(point2, point3));
 
@@ -124,6 +133,22 @@ namespace Geometry2D
             var destination = DestinationTwoPoints(point, circle.Center);
             return destination * destination - circle.Radius * circle.Radius;
         }
+        public static double PointAngleOnCircle(Point point, Circle circle)
+        {
+            if (!PointOnCircle(point, circle))
+                throw new ArgumentException("Point does not lie on circle");
+            if (circle.Radius <= Constants.EPS)
+                throw new ArgumentException("Circle is too small");
+            var cosOfThisAngle = (point.X - circle.Center.X) / circle.Radius;
+            cosOfThisAngle = cosOfThisAngle > 1 ? 1 :
+                cosOfThisAngle < -1 ? -1 : cosOfThisAngle;
+            var sinOfThisAngle = (point.Y - circle.Center.Y) / circle.Radius;
+            sinOfThisAngle = sinOfThisAngle > 1 ? 1 :
+                sinOfThisAngle < -1 ? -1 : sinOfThisAngle;
+            return Constants.Sign(sinOfThisAngle) * Math.Acos(cosOfThisAngle);
+        }
+        public static double AngleTwoPointsOnCircle(Point point1, Point point2, Circle circle) =>
+            PointAngleOnCircle(point2, circle) - PointAngleOnCircle(point1, circle);
         public static Line RadicalAxis(Circle circle1, Circle circle2)
         {
             if (circle1.Center == circle2.Center)
