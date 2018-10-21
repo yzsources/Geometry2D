@@ -27,6 +27,9 @@ namespace Geometry2D
             Math.Abs(line.Value(point)) < Constants.EPS;
         public static bool IfColinear(Point point1, Point point2, Point point3) =>
              IfColinear(new Vector(point1, point2), new Vector(point2, point3));
+
+        public static bool IfParallel(Line line1, Line line2) => 
+            Math.Abs(Vector.Determinant(line1.DirectingVector(), line2.DirectingVector())) < Constants.EPS;
         #endregion
 
         #region Intersections

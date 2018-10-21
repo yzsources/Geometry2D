@@ -84,11 +84,6 @@ namespace Geometry2D.Objects
         public double NormalValue(Point point) => Value(point.X, point.Y);
         #endregion
 
-        #region Static functions
-        public static bool IfParallel(Line line1, Line line2) =>
-            Math.Abs(Vector.Determinant(line1.DirectingVector(), line2.DirectingVector())) < Constants.EPS;
-        #endregion
-
 
     }
 }
