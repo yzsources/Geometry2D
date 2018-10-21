@@ -49,7 +49,21 @@ namespace Geometry2D.Objects.Algebraic
         public double Determinant { get => this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0]; }
 
         public bool Invertible { get => Math.Abs(Determinant) < Constants.EPS; }
+
+        public Vector[] Lines => new Vector[2]
+        {
+            new Vector(this[0, 0], this[0, 1]),
+            new Vector(this[1, 0], this[1, 1])
+        };
+
+        public Vector[] Columns => new Vector[2]
+        {
+            new Vector(this[0, 0], this[1, 0]),
+            new Vector(this[0, 1], this[1, 1])
+        };
         #endregion
+
+
 
 
     }
