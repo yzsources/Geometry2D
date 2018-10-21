@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Geometry.cs" />
+    <Compile Include="Objects\Algebraic\Matrix.cs" />
     <Compile Include="Objects\Geometric\Circle.cs" />
     <Compile Include="Objects\Geometric\Line.cs" />
     <Compile Include="Objects\Geometric\Point.cs" />
