@@ -99,7 +99,7 @@ namespace Geometry2D.Objects
         #endregion
 
         #region Static functions
-        public static double ColinearityProduct(Vector vector1, Vector vector2) =>
+        public static double Determinant(Vector vector1, Vector vector2) =>
             vector1._x * vector2._y - vector1._y * vector2._x;
         #endregion
 

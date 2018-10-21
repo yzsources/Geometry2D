@@ -22,7 +22,7 @@ namespace Geometry2D
         public static bool IfOrthogonal(Vector vector1, Vector vector2) =>
             Math.Abs(vector1 * vector2) <= Constants.EPS;
         public static bool IfColinear(Vector vector1, Vector vector2) =>
-            Math.Abs(Vector.ColinearityProduct(vector1, vector2)) <= Constants.EPS;
+            Math.Abs(Vector.Determinant(vector1, vector2)) <= Constants.EPS;
         public static bool IfPointInLine(Point point, Line line) =>
             Math.Abs(line.Value(point)) < Constants.EPS;
         public static bool IfColinear(Point point1, Point point2, Point point3) =>
