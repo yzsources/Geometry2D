@@ -51,6 +51,9 @@ namespace Geometry2D.Objects
         public Vector DirectingVector() =>
             new Vector(_b, -_a);
 
+        public Vector NormalVector() =>
+            new Vector(NormalA, NormalB);
+
         public double Value(double x, double y) =>
             _a * x + _b * y + _c;
 
