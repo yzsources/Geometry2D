@@ -37,14 +37,14 @@ namespace Geometry2D
         public static bool Colinear(Point point1, Point point2, Point point3) =>
              Colinear(new Vector(point1, point2), new Vector(point2, point3));
 
-        public static bool IfParallel(Line line1, Line line2) => 
+        public static bool Parallel(Line line1, Line line2) => 
             Math.Abs(Vector.Determinant(line1.DirectingVector(), line2.DirectingVector())) < Constants.EPS;
         #endregion
 
         #region Intersections
         public static Point IntersectionTwoLines(Line line1, Line line2)
         {
-            if (IfParallel(line1, line2))
+            if (Parallel(line1, line2))
                 throw new ArgumentException("Lines are paralel");
             return new Point(
                 (line2.C * line1.B - line1.C * line2.B) / (line1.A * line2.B - line1.B * line2.A),
