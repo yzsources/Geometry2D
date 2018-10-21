@@ -39,13 +39,13 @@ namespace Geometry2D.Objects
         public double A { get => _a; }
         public double B { get => _b; }
         public double C { get => _c; }
-        public double NormalA { get => -Math.Sign(_c) * _a / NormalVector().Norm; }
-        public double NormalB { get => -Math.Sign(_c) * _b / NormalVector().Norm; }
-        public double NormalC { get => -Math.Sign(_c) * _c / NormalVector().Norm; }
+        public double NormalA { get => -Math.Sign(_c) * _a / OrthogonalVector().Norm; }
+        public double NormalB { get => -Math.Sign(_c) * _b / OrthogonalVector().Norm; }
+        public double NormalC { get => -Math.Sign(_c) * _c / OrthogonalVector().Norm; }
         #endregion
 
         #region Non-static functions
-        public Vector NormalVector() =>
+        public Vector OrthogonalVector() =>
           new Vector(_a, _b);
 
         public Vector DirectingVector() =>
