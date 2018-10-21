@@ -35,6 +35,25 @@ namespace Geometry2D.Objects
 
         #endregion
 
+        #region Comparasion
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            var temp = obj as Line;
+            if ((object)temp == null) return false;
+            return IfParallel(this, temp) && Math.Abs(NormalC - temp.NormalC) < Constants.EPS;
+        }
+
+        public override int GetHashCode() =>
+            _a.GetHashCode() ^ _b.GetHashCode() ^ _c.GetHashCode();
+
+        public static bool operator ==(Line line1, Line line2) =>
+            line1.Equals(line2);
+
+        public static bool operator !=(Line line1, Line line2) =>
+            !line1.Equals(line2);
+        #endregion
+
         #region Properties
         public double A { get => _a; }
         public double B { get => _b; }
