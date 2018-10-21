@@ -111,5 +111,19 @@ namespace Geometry2D.Objects.Algebraic
                 );
         #endregion
 
+        #region Non-static functions
+        public Matrix Inverse()
+        {
+            if (!Invertible)
+                throw new ArgumentException("Impossible to invert matrix. Determinant is equal to zero");
+            return (1.0 / Determinant) *
+                new Matrix(
+                    this[1, 1],
+                    this[0, 1],
+                    this[1, 0],
+                    this[0, 0]
+                );
+        }
+        #endregion
     }
 }
