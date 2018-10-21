@@ -25,20 +25,14 @@ namespace Geometry2D.Objects
             return Destination(this, temp) < Constants.EPS;
         }
 
-        public override int GetHashCode()
-        {
-            return _x.GetHashCode() ^ _y.GetHashCode();
-        }
+        public override int GetHashCode() =>
+            _x.GetHashCode() ^ _y.GetHashCode();
 
-        public static bool operator ==(Point point1, Point point2)
-        {
-            return point1.Equals(point2);
-        }
+        public static bool operator ==(Point point1, Point point2) =>
+            point1.Equals(point2);
 
-        public static bool operator !=(Point point1, Point point2)
-        {
-            return !point1.Equals(point2);
-        }
+        public static bool operator !=(Point point1, Point point2) =>
+            !point1.Equals(point2);
         #endregion
 
         #region Properties
@@ -57,9 +51,6 @@ namespace Geometry2D.Objects
 
         public static Point Origin() => new Point(0, 0);
         #endregion
-
-
-
 
 
     }
