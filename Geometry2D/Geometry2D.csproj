@@ -40,10 +40,10 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Geometry.cs" />
-    <Compile Include="Objects\Circle.cs" />
-    <Compile Include="Objects\Line.cs" />
-    <Compile Include="Objects\Point.cs" />
-    <Compile Include="Objects\Vector.cs" />
+    <Compile Include="Objects\Geometric\Circle.cs" />
+    <Compile Include="Objects\Geometric\Line.cs" />
+    <Compile Include="Objects\Geometric\Point.cs" />
+    <Compile Include="Objects\Algebraic\Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
