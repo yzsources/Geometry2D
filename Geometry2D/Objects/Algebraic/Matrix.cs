@@ -1,4 +1,6 @@
-﻿namespace Geometry2D.Objects.Algebraic
+﻿using System;
+
+namespace Geometry2D.Objects.Algebraic
 {
     public class Matrix
     {
@@ -29,5 +31,26 @@
             _components[1, 1] = vector2.Y;
         }
         #endregion
+
+        #region Properties and indexators
+        public double this[int line, int column]
+        {
+            get
+            {
+                if (line < 0 || line > 1 || column < 0 || column > 1)
+                    throw new IndexOutOfRangeException();
+
+                return _components[line, column];
+            }
+
+            set => _components[line, column] = value;
+        }
+
+        public double Determinant { get => this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0]; }
+
+        public bool Invertible { get => Math.Abs(Determinant) < Constants.EPS; }
+        #endregion
+
+
     }
 }
