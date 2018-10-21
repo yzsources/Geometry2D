@@ -41,7 +41,7 @@ namespace Geometry2D.Objects
             if (obj == null) return false;
             var temp = obj as Line;
             if ((object)temp == null) return false;
-            return IfParallel(this, temp) && Math.Abs(NormalC - temp.NormalC) < Constants.EPS;
+            return Geometry.Parallel(this, temp) && Math.Abs(NormalC - temp.NormalC) < Constants.EPS;
         }
 
         public override int GetHashCode() =>
