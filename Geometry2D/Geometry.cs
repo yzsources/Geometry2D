@@ -128,7 +128,7 @@ namespace Geometry2D
             return new Line(
                 2 * (circle2.Center.X - circle1.Center.X),
                 2 * (circle2.Center.Y - circle1.Center.Y),
-                PointPower(Point.CoordinateStartPoint(), circle1) - PointPower(Point.CoordinateStartPoint(), circle2)
+                PointPower(Point.Origin(), circle1) - PointPower(Point.Origin(), circle2)
                 );
         }
         #endregion

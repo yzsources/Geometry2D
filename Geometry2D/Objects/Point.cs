@@ -55,7 +55,7 @@ namespace Geometry2D.Objects
         public static double Destination(Point point1, Point point2) =>
             Math.Sqrt((point2._x - point1._x) * (point2._x - point1._x) + (point2._y - point1._y) * (point2._y - point1._y));
 
-        public static Point CoordinateStartPoint() => new Point(0, 0);
+        public static Point Origin() => new Point(0, 0);
         #endregion
 
 
