@@ -38,20 +38,14 @@ namespace Geometry2D.Objects
             return (temp - this).IfZero();
         }
 
-        public override int GetHashCode()
-        {
-            return _x.GetHashCode() ^ _y.GetHashCode();
-        }
+        public override int GetHashCode() =>
+            _x.GetHashCode() ^ _y.GetHashCode();
 
-        public static bool operator ==(Vector vector1, Vector vector2)
-        {
-            return vector1.Equals(vector2);
-        }
+        public static bool operator ==(Vector vector1, Vector vector2) =>
+            vector1.Equals(vector2);
 
-        public static bool operator !=(Vector vector1, Vector vector2)
-        {
-            return !vector1.Equals(vector2);
-        }
+        public static bool operator !=(Vector vector1, Vector vector2) =>
+            !vector1.Equals(vector2);
         #endregion
 
         #region Properties
